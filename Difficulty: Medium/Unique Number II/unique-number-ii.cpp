@@ -2,31 +2,20 @@ class Solution {
   public:
     vector<int> singleNum(vector<int>& arr) {
         // Code here.
-       int sum = 0;
-        // vector<int>ans;
-        for (int val: arr)
-        {
-            sum^=val;
-        }
-         unsigned int rightmostSetBit = sum & ~(static_cast<unsigned int>(sum) - 1);
-        
-        int x = 0;
-        int y = 0;
-        
-       
-        for (int val : arr) {
-            if (val & rightmostSetBit) {
-                x ^= val;
-            } else {
-                y ^= val;
-            }
-        }
-         
-        
-        if (x < y) {
-            return {x, y};
-        } else {
-            return {y, x};
-        }
+      vector<int>ans;
+      unordered_map<int, int>frequency;
+      
+      for(int val: arr)
+      {
+          frequency[val]++;
+      }
+      for(auto const& [num, count]: frequency)
+      {
+          if (count == 1){
+              ans.push_back(num);
+          }
+      }
+      sort(ans.begin(),ans.end());
+      return ans;
     }
 };
