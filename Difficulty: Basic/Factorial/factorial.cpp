@@ -2,11 +2,13 @@ class Solution {
   public:
     int factorial(int n) {
         // code here
-        int fact=1;
-        for(int i=1; i<=n; i++)
+        if(n == 0 || n == 1)
         {
-            fact*=i;
+            return 1;
         }
-        return fact;
+        else
+        {
+            return n*factorial(n-1);
+        }
     }
 };
